@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Minecraft Server Information</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				padding: 20px;
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			table {
+				margin: 20px auto;
+				border-collapse: collapse;
+				width: 80%;
+			}
+
+			th,
+			td {
+				padding: 10px;
+				text-align: center;
+			}
+
+			th {
+				background-color: #f2f2f2;
+			}
+
+			tr:nth-child(even) {
+				background-color: #f9f9f9;
+			}
+		</style>
+	</head>
+	<body>
+
+		<table>
+			<tr>
+				<th>服务器</th>
+				<th>名字</th>
+				<th>玩家</th>
+				<th>版本</th>
+				<th>备注</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</table>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				// Make a GET request to retrieve the servers.json file
+				$.getJSON('servers.json', function(data) {
+					// Loop through the servers array
+					$.each(data, function(index, server) {
+						// Construct the server ID for each table row
+						var rowId = "row" + (index + 1);
+
+						// Create a new table row
+						var row = $('<tr id="' + rowId + '"></tr>');
+
+						// Append the row to the table
+						$('table').append(row);
+
+						// Display the server and port in the first cell
+						var serverCell = $('<td></td>').text(server.name + ':' + server.port);
+						$('#' + rowId).append(serverCell);
+
+						// Make API request for each server
+						$.get("https://api.mcsrvstat.us/bedrock/2/" + server.name + ":" + server.port, function(data) {
+							// Extract MOTD information
+							var motd = data.motd.clean.join("<br>");
+
+							// Create a cell for MOTD and append to the row
+							var motdCell = $('<td></td>').html(motd);
+							$('#' + rowId).append(motdCell);
+
+							// Extract player count and max players
+							var players = data.players;
+							var playerCount = players.online;
+							var maxPlayers = players.max;
+
+							// Create a cell for player information and append to the row
+							var playersCell = $('<td></td>').text(playerCount + '/' + maxPlayers + ' online');
+							$('#' + rowId).append(playersCell);
+
+							// Extract version information
+							var version = data.version;
+
+							// Create a cell for version and append to the row
+							var versionCell = $('<td></td>').text(version);
+							$('#' + rowId).append(versionCell);
+
+							// Check if the server object has a 'tips' property
+							if ('tips' in server) {
+								// Create a cell for tips and append to the row
+								var tipsCell = $('<td></td>').text(server.tips);
+								$('#' + rowId).append(tipsCell);
+							} else {
+								// If the 'tips' property is not present, create an empty cell
+								var emptyCell = $('<td></td>');
+								$('#' + rowId).append(emptyCell);
+							}
+
+							// Create a cell with a link to launch Minecraft client
+							var launchCell = $('<td></td>');
+							var launchLink = $('<a></a>').attr('href', 'minecraft://?addExternalServer=' + encodeURIComponent(server
+								.name + '|' + server.name + ':' + server.port)).text('添加服务器');
+							launchCell.append(launchLink);
+							$('#' + rowId).append(launchCell);
+						});
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
