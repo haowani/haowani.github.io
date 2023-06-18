@@ -1,4 +1,4 @@
-# haowani.github.
+# haowani.github.io
 
 帮助玩家检索服务器状态的小工具
 
