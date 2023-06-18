@@ -1,5 +1,7 @@
 # haowani.github.io
 
+由chantgpt编写
+
 帮助玩家检索服务器状态的小工具
 
 
