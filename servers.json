@@ -1,0 +1,13 @@
+[
+  { "name": "plays.tpddns.cn", "port": 19130 , "tips": "生存 困难 死亡掉落"},
+  { "name": "2b2e.org", "port": 19132 , "tips": "生存 pvp"},
+  { "name": "minik.top", "port": 30075 , "tips": "生存 传送 ... "},
+  { "name": "mc.yvmo.top", "port": 19132, "tips": "生存" },
+  { "name": "srcld.top", "port": 19132, "tips": "生存 死亡不掉落 " },
+  { "name": "play.easyareamc.net", "port": 19132, "tips": "多服 生存 传送 " },  
+  { "name": "natwan3.mianban.cc", "port": 32000, "tips": "生存" },
+  { "name": "plays.tpddns.cn", "port": 19139, "tips": "生存" },
+  { "name": "x3.getmc.cn", "port": 15158, "tips": "生存" },  
+  { "name": "longge.shop", "port": 60000, "tips": "生存" },
+  { "name": "longge.love", "port": 19132, "tips": "生存" }
+]
