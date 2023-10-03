@@ -2,7 +2,6 @@
   { "name": "2b2e.org", "port": 19132 , "tips": "生存 pvp"},
   { "name": "play.easyareamc.net", "port": 19132, "tips": "多服 生存 传送 " },  
   { "name": "srcld.top", "port": 19132, "tips": "生存 死亡不掉落 " },
-
   { "name": "plays.tpddns.cn", "port": 19130 , "tips": "生存 困难 死亡掉落"},
   { "name": "minik.top", "port": 30075 , "tips": "生存 传送 ... "},
   { "name": "mc.yvmo.top", "port": 19132, "tips": "生存" },
